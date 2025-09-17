@@ -15,42 +15,42 @@ Built with React, Tailwind CSS, Node.js, and SQLite, this system handles everyth
 
 - Low stock alerts for timely replenishment
 
-Supports MRP and purchase price tracking
+- Supports MRP and purchase price tracking
 
 
 🛒 Billing & POS
 
-Fast and responsive billing interface
+- Fast and responsive billing interface
 
-Cart management with discounts and GST calculation
+- Cart management with discounts and GST calculation
 
-Undo last sale option to fix billing mistakes
+- Undo last sale option to fix billing mistakes
 
-Printable invoices for customers
+- Printable invoices for customers
 
 
 📊 Reports & History
 
-Daily, monthly, yearly sales reports
+- Daily, monthly, yearly sales reports
 
-Purchase and sales history with timestamps
+- Purchase and sales history with timestamps
 
-Stock reports including low-stock items
+- Stock reports including low-stock items
 
-Export and backup SQLite database manually or automatically
+- Export and backup SQLite database manually or automatically
 
 
 ⚡ Advanced & Robust
 
-100% offline — no internet required
+- 100% offline — no internet required
 
-Electron-ready for desktop deployment
+- Electron-ready for desktop deployment
 
-Crash recovery with logs and write-ahead transactions
+- Crash recovery with logs and write-ahead transactions
 
-Barcode scanner support (optional)
+- Barcode scanner support (optional)
 
-Settings page to customize invoice templates, GST, and discounts
+- Settings page to customize invoice templates, GST, and discounts
 
 ---
 
