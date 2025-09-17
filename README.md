@@ -3,6 +3,8 @@
 A full offline inventory and billing system designed specifically for footwear shops.
 Built with React, Tailwind CSS, Node.js, and SQLite, this system handles everything from stock management to billing — offline, plug-and-play, and unbreakable.
 
+---
+
 🔍 Features
 👟 Inventory Management
 
