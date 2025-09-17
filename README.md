@@ -6,6 +6,7 @@ Built with React, Tailwind CSS, Node.js, and SQLite, this system handles everyth
 ---
 
 🔍 Features
+
 👟 Inventory Management
 
 Track footwear stock with Article Number, Size, Color, and Category
@@ -15,6 +16,7 @@ Add, remove, and update stock manually
 Low stock alerts for timely replenishment
 
 Supports MRP and purchase price tracking
+
 
 🛒 Billing & POS
 
@@ -26,6 +28,7 @@ Undo last sale option to fix billing mistakes
 
 Printable invoices for customers
 
+
 📊 Reports & History
 
 Daily, monthly, yearly sales reports
@@ -35,6 +38,7 @@ Purchase and sales history with timestamps
 Stock reports including low-stock items
 
 Export and backup SQLite database manually or automatically
+
 
 ⚡ Advanced & Robust
 
@@ -60,21 +64,26 @@ Extras: Electron (optional), Printable Receipts, Local Backups
 ---
 
 🚀 Quick Start
+
 1️⃣ Clone the repository
+
 git clone https://github.com/your-username/footwear-inventory-pos.git
 cd footwear-inventory-pos
 
 2️⃣ Install backend dependencies
+
 cd backend
 npm install
 npm start
 
 3️⃣ Install frontend dependencies
+
 cd ../frontend
 npm install
 npm run dev
 
 4️⃣ Open the app in your browser
+
 http://localhost:5174
 
 
@@ -101,6 +110,7 @@ This project is open-source and available under the MIT License.
 ---
 
 👤 Author
+
 Hariharan S
 📧 Email: hariharan03.eng@gmail.com
 
