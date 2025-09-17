@@ -48,12 +48,16 @@ Barcode scanner support (optional)
 
 Settings page to customize invoice templates, GST, and discounts
 
+---
+
 ⚙️ Tech Stack
 
 Frontend: React + Tailwind CSS
 Backend: Node.js + Express
 Database: SQLite (ACID-safe)
 Extras: Electron (optional), Printable Receipts, Local Backups
+
+---
 
 🚀 Quick Start
 1️⃣ Clone the repository
@@ -76,6 +80,8 @@ http://localhost:5174
 
 Start managing your footwear inventory & sales offline! ✅
 
+---
+
 📝 Screenshots
 
 Home Dashboard – Billing & stock overview
@@ -86,26 +92,21 @@ Inventory Page – Manage products by article, size, and color
 
 Reports Page – Daily, monthly, and yearly sales
 
-
-💡 Future Improvements
-
-Full barcode scanner integration
-
-Multi-store support
-
-Advanced analytics and charts
-
-Optional cloud sync for backup and multi-device access
+---
 
 📜 License
 
 This project is open-source and available under the MIT License.
+
+---
 
 👤 Author
 Hariharan S
 📧 Email: hariharan03.eng@gmail.com
 
 🔗 GitHub: @Eng-Hari
+
+---
 
 ⭐ Support
 
