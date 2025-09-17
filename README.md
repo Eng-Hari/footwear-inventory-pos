@@ -9,11 +9,11 @@ Built with React, Tailwind CSS, Node.js, and SQLite, this system handles everyth
 
 👟 Inventory Management
 
-Track footwear stock with Article Number, Size, Color, and Category
+- Track footwear stock with Article Number, Size, Color, and Category
 
-Add, remove, and update stock manually
+- Add, remove, and update stock manually
 
-Low stock alerts for timely replenishment
+- Low stock alerts for timely replenishment
 
 Supports MRP and purchase price tracking
 
