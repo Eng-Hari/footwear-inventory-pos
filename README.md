@@ -91,18 +91,6 @@ Start managing your footwear inventory & sales offline! ✅
 
 ---
 
-📝 Screenshots
-
-Home Dashboard – Billing & stock overview
-
-
-Inventory Page – Manage products by article, size, and color
-
-
-Reports Page – Daily, monthly, and yearly sales
-
----
-
 📜 License
 
 This project is open-source and available under the MIT License.
