@@ -6,8 +6,8 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",       // ✅ Use node, not nodemon
-    "dev": "nodemon server.js"       // ✅ Keep dev script for local testing
+    "start": "node server.js",     
+    "dev": "nodemon server.js"       
   },
   "keywords": [],
   "author": "",
