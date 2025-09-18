@@ -8,21 +8,20 @@ export default function Invoice({
   paymentType,
   amountReceived,
   change,
-  invoiceRef,
   settings,
   billNumber,
+  invoiceRef,
 }) {
-  // Fallback values if settings not loaded
   const shopName = settings?.shop_name || "Suresh Footwears";
   const shopAddress = settings?.address || "No. 12, Main Road, Your City";
   const shopPhone = settings?.contact_number || "+91 9876543210";
   const gstin = settings?.gst_number || "33ABCDE1234F1Z5";
-  const gstRate = 0.05; // 5% GST, configurable in settings if needed
+  const gstRate = settings?.gst_percent || 0.05;
   const gstAmount = subtotal * gstRate;
   const today = new Date();
 
   return (
-    <div ref={invoiceRef} className="hidden print:block p-4 w-[80mm] text-xs font-sans">
+    <div ref={invoiceRef} className="sr-only print:block p-4 w-[80mm] text-xs font-sans">
       {/* Header */}
       <h2 className="text-lg font-bold text-center">{shopName}</h2>
       <p className="text-center">{shopAddress}</p>
@@ -34,7 +33,7 @@ export default function Invoice({
       <hr className="my-2 border-gray-400" />
 
       {/* Items Table */}
-      <table className="w-full border-collapse">
+      <table className="w-full border-collapse mb-2">
         <thead>
           <tr className="border-b border-gray-400">
             <th className="text-left py-1">Item</th>
@@ -44,19 +43,26 @@ export default function Invoice({
           </tr>
         </thead>
         <tbody>
-          {cart.map((item, idx) => (
-            <tr key={idx} className="border-b border-gray-300">
-              <td className="py-1">{item.article}</td>
-              <td className="text-center py-1">{item.qty}</td>
-              <td className="text-right py-1">₹ {item.mrp.toFixed(2)}</td>
-              <td className="text-right py-1">₹ {(item.qty * item.mrp).toFixed(2)}</td>
+          {cart.length > 0 ? (
+            cart.map((item, idx) => (
+              <tr key={idx} className="border-b border-gray-300">
+                <td className="py-1">{item.article} ({item.name})</td>
+                <td className="text-center py-1">{item.qty}</td>
+                <td className="text-right py-1">₹ {item.mrp.toFixed(2)}</td>
+                <td className="text-right py-1">₹ {(item.qty * item.mrp).toFixed(2)}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="4" className="text-center py-1">No items in cart</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
+      <hr className="my-2 border-gray-400" /> {/* Added horizontal line below product details */}
 
       {/* Billing Summary */}
-      <div className="mt-2 space-y-1">
+      <div className="mt-2 space-y-1 bg-gray-100 p-2 rounded">
         <div className="flex justify-between">
           <span>Subtotal:</span>
           <span>₹ {subtotal.toFixed(2)}</span>
