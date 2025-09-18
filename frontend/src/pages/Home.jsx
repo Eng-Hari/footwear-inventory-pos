@@ -41,11 +41,11 @@ export default function Home() {
   async function loadSettings() {
     try {
       const data = await apiRequest("/settings");
-      const s = { shop_name: "Suresh Footwears", gst_number: "", contact_number: "", address: "", gst_percent: 5, ...data };
+      const s = { shop_name: " Footwears", gst_number: "", contact_number: "", address: "", gst_percent: 5, ...data };
       setSettings(s);
       localStorage.setItem("shopSettings", JSON.stringify(s));
     } catch {
-      const fallback = { shop_name: "Suresh Footwears", gst_number: "", contact_number: "", address: "", gst_percent: 5 };
+      const fallback = { shop_name: " Footwears", gst_number: "", contact_number: "", address: "", gst_percent: 5 };
       setSettings(fallback);
       localStorage.setItem("shopSettings", JSON.stringify(fallback));
     }
@@ -133,7 +133,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-100 p-6 max-w-4xl mx-auto">
       <div className="bg-white shadow-2xl rounded-xl p-6">
-        <h2 className="text-3xl font-bold text-center mb-6 text-blue-800">{settings.shop_name || "SURESH FOOTWEARS"}</h2>
+        <h2 className="text-3xl font-bold text-center mb-6 text-blue-800">{settings.shop_name || " FOOTWEARS"}</h2>
 
         {/* Search */}
         <div className="relative mb-6">
