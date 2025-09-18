@@ -1,7 +1,5 @@
 🥿 Footwear Inventory & POS System
 
-![Uploading image.png…]()
-
 
 
 A full offline inventory and billing system designed specifically for footwear shops.
