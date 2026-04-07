@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import { apiRequest } from "../utils/api";
 import { toast, ToastContainer } from "react-toastify";
+import autoTable from "jspdf-autotable";
+import jsPDF from "jspdf";
 import {
   ExclamationTriangleIcon,
   MagnifyingGlassIcon,
@@ -49,17 +51,58 @@ export default function LowStock() {
 
   async function generatePDF() {
     setIsGeneratingPDF(true);
+
     try {
-      const latexContent = `...`;
-      const blob = new Blob([latexContent], { type: "text/latex" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `LowStock_Report_${new Date().toISOString().split("T")[0]}.tex`;
-      a.click();
-      URL.revokeObjectURL(url);
-      toast.success("PDF generated!", { position: "top-right" });
-    } catch {
+      const doc = new jsPDF();
+
+
+      doc.setFontSize(16);
+      doc.text("Low Stock Report", 14, 15);
+
+
+      doc.setFontSize(10);
+      doc.text(`Generated: ${new Date().toLocaleString()}`, 14, 22);
+
+
+      const tableData = filtered.map((p, i) => [
+        i + 1,
+        p.article,
+        p.name,
+        p.color,
+        p.size,
+        p.quantity,
+        `Rs. ${Number(p.mrp || 0).toLocaleString("en-IN")}`]);
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const tableWidth = 150; // approx total width
+
+      autoTable(doc, {
+        startY: 28,
+
+        head: [["#", "Article", "Name", "Color", "Size", "Qty", "MRP"]],
+        body: tableData,
+
+        margin: {
+          left: (pageWidth - tableWidth) / 2, // 🔥 CENTER FIX
+        },
+
+        styles: {
+          fontSize: 7,
+        },
+
+        columnStyles: {
+          0: { cellWidth: 10 },
+          1: { cellWidth: 25 },
+          2: { cellWidth: 40 },
+          3: { cellWidth: 20 },
+          4: { cellWidth: 15 },
+          5: { cellWidth: 15 },
+          6: { cellWidth: 25 },
+        },
+      });
+      doc.save(`LowStock_Report_${new Date().toISOString().split("T")[0]}.pdf`);
+
+      toast.success("PDF downloaded!", { position: "top-right" });
+    } catch (err) {
       toast.error("Failed to generate PDF", { position: "top-right" });
     } finally {
       setIsGeneratingPDF(false);
@@ -105,11 +148,10 @@ export default function LowStock() {
       <div className="flex flex-col sm:flex-row gap-3 mb-6">
         <div
           className={`flex items-center gap-3 bg-white border rounded-2xl px-4 py-3 shadow-sm flex-1 transition-all duration-200
-          ${
-            searchFocused
+          ${searchFocused
               ? "border-blue-400 ring-2 ring-blue-100"
               : "border-gray-200 hover:border-gray-300"
-          }`}
+            }`}
         >
           <MagnifyingGlassIcon className={`w-5 h-5 ${searchFocused ? "text-blue-500" : "text-gray-400"}`} />
 
@@ -182,9 +224,8 @@ export default function LowStock() {
                 filtered.map((p, i) => (
                   <tr
                     key={p.id}
-                    className={`${
-                      i % 2 === 0 ? "bg-white" : "bg-slate-50/60"
-                    } hover:bg-blue-50/40 transition-colors duration-150`}
+                    className={`${i % 2 === 0 ? "bg-white" : "bg-slate-50/60"
+                      } hover:bg-blue-50/40 transition-colors duration-150`}
                   >
                     <td className="px-4 py-3">
                       <span className="font-mono text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded-lg">

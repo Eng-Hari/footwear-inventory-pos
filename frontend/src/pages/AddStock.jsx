@@ -13,17 +13,6 @@ import {
   SparklesIcon,
   ExclamationTriangleIcon,
 } from "@heroicons/react/24/outline";
-
-const FIELD_CONFIG = [
-  { name: "article", placeholder: "Article No.", type: "text", span: 1 },
-  { name: "name", placeholder: "Product Name", type: "text", span: 2 },
-  { name: "color", placeholder: "Color", type: "text", span: 1 },
-  { name: "size", placeholder: "Size", type: "text", span: 1 },
-  { name: "quantity", placeholder: "Quantity", type: "number", span: 1 },
-  { name: "mrp", placeholder: "MRP (₹)", type: "number", span: 1 },
-  { name: "purchase_price", placeholder: "Purchase Price (₹)", type: "number", span: 1 },
-];
-
 const CATEGORIES = ["Men", "Women", "Girl", "Boy"];
 
 const EMPTY_FORM = {
@@ -342,7 +331,7 @@ export default function AddStock() {
             </button>
           </div>
 
-          <div className="overflow-x-auto">
+          <div className="min-h-screen  overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-gray-50 border-b border-gray-100">

@@ -69,7 +69,9 @@ export default function Settings() {
       return;
     }
 
-    if (settings.gst_percent < 0 || settings.gst_percent > 28) {
+    const gst = Number(settings.gst_percent);
+
+    if (isNaN(gst) || gst < 0 || gst > 28) {
       toast.warn("GST % must be between 0 and 28", {
         position: "top-right",
       });
@@ -82,7 +84,7 @@ export default function Settings() {
 
       const updated = {
         ...settings,
-        gst_percent: Number(settings.gst_percent) || 0,
+        gst_percent: Number(settings.gst_percent) || 0
       };
 
       setOriginalSettings(updated);
@@ -193,10 +195,9 @@ export default function Settings() {
                 onClick={handleSave}
                 disabled={isSaving}
                 className={`flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl border text-sm font-medium transition-all
-                  ${
-                    isSaving
-                      ? "opacity-50 cursor-not-allowed"
-                      : "bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-600 hover:text-white hover:border-blue-600"
+                  ${isSaving
+                    ? "opacity-50 cursor-not-allowed"
+                    : "bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-600 hover:text-white hover:border-blue-600"
                   }`}
               >
                 {isSaving ? "Saving…" : "Save Settings"}
@@ -206,10 +207,9 @@ export default function Settings() {
                 onClick={handleReset}
                 disabled={isSaving || !originalSettings}
                 className={`flex-1 inline-flex items-center justify-center px-4 py-2 rounded-xl border text-sm font-medium transition-all
-                  ${
-                    isSaving || !originalSettings
-                      ? "opacity-50 cursor-not-allowed"
-                      : "bg-gray-50 text-gray-600 border-gray-200 hover:bg-gray-500 hover:text-white hover:border-gray-500"
+                  ${isSaving || !originalSettings
+                    ? "opacity-50 cursor-not-allowed"
+                    : "bg-gray-50 text-gray-600 border-gray-200 hover:bg-gray-500 hover:text-white hover:border-gray-500"
                   }`}
               >
                 Reset
