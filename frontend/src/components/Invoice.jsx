@@ -1,4 +1,3 @@
-
 import React from "react";
 
 export default function Invoice({
@@ -17,8 +16,13 @@ export default function Invoice({
   const shopAddress = settings?.address || "No. 12, Main Road, Your City";
   const shopPhone = settings?.contact_number || "+91 9876543210";
   const gstin = settings?.gst_number || "33ABCDE1234F1Z5";
-  const gstRate = settings?.gst_percent || 0.05;
-  const gstAmount = subtotal * gstRate;
+
+  const gstPercent = Number(settings?.gst_percent || 5);
+
+  // ✅ GST INCLUDED LOGIC
+  const baseAmount = subtotal / (1 + gstPercent / 100);
+  const gstAmount = subtotal - baseAmount;
+
   const today = new Date();
 
   return (
@@ -101,8 +105,10 @@ export default function Invoice({
         {/* SUMMARY */}
         <div style={{ marginTop: "20px", display: "flex", justifyContent: "flex-end" }}>
           <div style={{ width: "250px" }}>
-            <Row label="Subtotal" value={subtotal} />
-            <Row label={`Tax (${(gstRate * 100).toFixed(0)}%)`} value={gstAmount} />
+            <Row label="Subtotal (Incl. GST)" value={subtotal} />
+
+            {/* ✅ FIXED GST */}
+            <Row label={`GST (${gstPercent}%)`} value={gstAmount} />
 
             {discount > 0 && <Row label="Discount" value={-discount} />}
 
@@ -115,7 +121,6 @@ export default function Invoice({
           </div>
         </div>
 
-        {/* THANK YOU */}
         <p style={{ marginTop: "30px" }}>Thank you!</p>
 
         {/* FOOTER */}
@@ -137,7 +142,6 @@ export default function Invoice({
   );
 }
 
-/* ROW COMPONENT */
 function Row({ label, value }) {
   return (
     <div style={{ display: "flex", justifyContent: "space-between", margin: "5px 0" }}>

@@ -28,7 +28,7 @@ export default function LowStock() {
   async function loadLowStock() {
     try {
       const data = await apiRequest("/inventory");
-      setProducts(data.filter((p) => p.quantity < LOW_STOCK_LIMIT));
+      setProducts(data.filter((p) => p.quantity <= LOW_STOCK_LIMIT));
     } catch {
       toast.error("Failed to load low stock items", { position: "top-right" });
     }
@@ -108,13 +108,29 @@ export default function LowStock() {
       setIsGeneratingPDF(false);
     }
   }
-
   async function generateTextMessage() {
     setIsCopyingText(true);
     try {
+      const header =
+        "No  Article  Name      Color   Size  Qty   MRP\n" +
+        "---------------------------------------------------\n";
+
+      const rows = filtered.map((p, i) => {
+        return (
+          String(i + 1).padEnd(3) +
+          String(p.article).padEnd(9) +
+          String(p.name).padEnd(10) +
+          String(p.color || "-").padEnd(8) +
+          String(p.size || "-").padEnd(6) +
+          String(p.quantity).padEnd(6) +
+          `₹${(p.mrp || 0).toFixed(2)}`
+        );
+      }).join("\n");
+
       const text =
         `Low Stock Report (${new Date().toLocaleString()})\n\n` +
-        filtered.map((p, i) => `${i + 1}. ${p.article} - ${p.name} (${p.quantity})`).join("\n");
+        header +
+        rows;
 
       await navigator.clipboard.writeText(text);
       toast.success("Copied!", { position: "top-right" });

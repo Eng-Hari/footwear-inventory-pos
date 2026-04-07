@@ -5,9 +5,10 @@ import { useState, useEffect } from "react";
 
 import Sidebar from "./components/Sidebar";
 
-import Home from "./pages/Home";
-import Inventory from "./pages/Inventory";
-import AddStock from "./pages/AddStock";
+import Home from "./pages/Home/Home";
+import Inventory from "./pages/Inventory/Inventory";
+// import AddStock from "./pages/AddStock";
+import AddStock from "./pages/AddStock/AddStock";
 import Reports from "./pages/Reports";
 import Settings from "./pages/Settings";
 import Login from "./pages/Login";
@@ -35,10 +36,11 @@ export default function App() {
 
   return (
     <Router>
-      <div className="h-screen overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/20 to-slate-100 flex">
-        {/* SIDEBAR */}
+      {/* overflow-hidden */}
+<div className="h-screen flex bg-gradient-to-br from-slate-50 via-blue-50/20 to-slate-100">        {/* SIDEBAR */}
         {user && (
-          <div className="hidden sm:block h-screen">
+          // h-screen
+          <div className="hidden sm:block ">
             <Sidebar user={user} />
           </div>
         )}
