@@ -4,9 +4,9 @@ import cors from "cors";
 import { db, createTables } from "./db.js";
 
 const app = express();
-const PORT = process.env.PORT || 3000; // ✅ dynamic port for Render
+const PORT = process.env.PORT || 3000; //  dynamic port for Render
 
-app.use(cors({ origin: "*" })); // ✅ allow requests from any origin
+app.use(cors({ origin: "*" })); //  allow requests from any origin
 app.use(express.json());
 
 // Initialize database tables
@@ -46,7 +46,7 @@ app.post("/inventory", (req, res) => {
 
     res.json({
       id: result.lastInsertRowid,
-      message: "✅ Product added successfully",
+      message: " Product added successfully",
     });
   } catch (error) {
     console.error("❌ Error inserting product:", error);
@@ -71,7 +71,7 @@ app.put("/inventory/:id", (req, res) => {
     `);
     const result = stmt.run(article, name, color, size, quantity, mrp, purchase_price, id);
 
-    res.json({ updated: result.changes, message: "✅ Product updated" });
+    res.json({ updated: result.changes, message: " Product updated" });
   } catch (error) {
     console.error("❌ Error updating product:", error);
     res.status(500).json({ error: "Failed to update product" });
@@ -117,7 +117,7 @@ app.post("/sales", (req, res) => {
       updateStock.run(item.qty, item.id);
     }
 
-    res.json({ id: result.lastInsertRowid, message: "✅ Sale saved" });
+    res.json({ id: result.lastInsertRowid, message: " Sale saved" });
   } catch (error) {
     console.error("❌ Error saving sale:", error);
     res.status(500).json({ error: "Failed to save sale" });
@@ -160,7 +160,7 @@ app.post("/settings", (req, res) => {
     const { shop_name, gst_number } = req.body;
     db.prepare("INSERT OR REPLACE INTO settings (id, shop_name, gst_number) VALUES (1, ?, ?)")
       .run(shop_name, gst_number);
-    res.json({ message: "✅ Settings saved" });
+    res.json({ message: " Settings saved" });
   } catch (error) {
     console.error("❌ Error saving settings:", error);
     res.status(500).json({ error: "Failed to save settings" });
